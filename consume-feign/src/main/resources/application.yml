@@ -1,0 +1,26 @@
+server:
+  port: 9095
+
+spring:
+  application:
+    name: consume-feign
+  cloud:
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      discovery:
+        namespace: 7e8c21f2-1384-4b40-809c-aa860e64ac22
+#        不向注册中心注册自己
+        register-enabled: false
+
+    loadbalancer:
+      ribbon:
+          enabled: false
+      retry:
+        enabled: true
+        maxRetriesOnSameServiceInstance: 1
+
+feign:
+  circuitbreaker:
+    enabled: true
+
+
