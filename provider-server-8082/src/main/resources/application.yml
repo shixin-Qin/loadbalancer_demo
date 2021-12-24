@@ -6,7 +6,7 @@ spring:
     name: provide-server
   cloud:
     nacos:
-      serverAddr: 127.0.0.1:8848
+      serverAddr: 47.97.117.93:8848
       discovery:
-        namespace: 7e8c21f2-1384-4b40-809c-aa860e64ac22
+        namespace: 028a1914-3c25-4b7b-9453-d39c9f15d516
 

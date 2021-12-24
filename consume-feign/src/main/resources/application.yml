@@ -6,9 +6,9 @@ spring:
     name: consume-feign
   cloud:
     nacos:
-      serverAddr: 127.0.0.1:8848
+      serverAddr: 47.97.117.93:8848
       discovery:
-        namespace: 7e8c21f2-1384-4b40-809c-aa860e64ac22
+        namespace: 028a1914-3c25-4b7b-9453-d39c9f15d516
 #        不向注册中心注册自己
         register-enabled: false
 
@@ -17,10 +17,43 @@ spring:
           enabled: false
       retry:
         enabled: true
-        maxRetriesOnSameServiceInstance: 1
+        retry-on-all-operations: false
+        maxRetriesOnNextServiceInstance: 3
+        backoff:
+          enabled: true       # 重试延迟开启
+          min-backoff: 5000   # 最小延迟时间
+          max-backoff: 30000  # 最大延迟时间
+
+
+
+
 
 feign:
   circuitbreaker:
     enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  client:
+    config:
+      default:
+        #连接超时时间
+        connectTimeout: 2000
+        #读取超时时间
+        readTimeout: 10000
+
+#resilience4j.circuitbreaker:
+#  instances:
+#    backendA:
+#      registerHealthIndicator: true
+#      slidingWindowSize: 100
+#    backendB:
+#      registerHealthIndicator: true
+#      slidingWindowSize: 10
+#      permittedNumberOfCallsInHalfOpenState: 3
+#      slidingWindowType: TIME_BASED
+#      recordFailurePredicate: io.github.robwin.exception.RecordFailurePredicate
+
 
 
